@@ -123,3 +123,66 @@ code --install-extension kilocode.kilo-code
 5. Сохраните настройки и проверьте подключение, отправив тестовый запрос агенту.
 
 Не храните API-ключи в репозитории — используйте переменные окружения или менеджер секретов.
+
+## 6. Установите uv и инициализируйте Python-окружение
+
+[uv](https://docs.astral.sh/uv/) — быстрый менеджер Python-пакетов и виртуальных окружений, используемый в этом проекте (`pyproject.toml` и `uv.lock`).
+
+### Установка uv
+
+- Документация по установке: https://docs.astral.sh/uv/getting-started/installation/
+
+Linux / macOS:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Windows (PowerShell):
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Либо через pip, если Python уже установлен:
+
+```bash
+pip install uv
+```
+
+Проверка установки:
+
+```bash
+uv --version
+```
+
+### Инициализация окружения после скачивания репозитория
+
+1. Склонируйте репозиторий и перейдите в его каталог:
+
+```bash
+git clone <URL_РЕПОЗИТОРИЯ>
+cd latex_with_ai
+```
+
+2. Создайте виртуальное окружение и установите зависимости (включая dev-группу для Jupyter):
+
+```bash
+uv sync --dev
+```
+
+`uv sync` создаст каталог `.venv` и установит все зависимости из `uv.lock` в точных версиях. Ключ `--dev` дополнительно ставит пакеты из группы `dev` (ipykernel, jupyterlab).
+
+3. Проверьте окружение, запустив интерпретатор:
+
+```bash
+uv run python --version
+```
+
+4. Запустите Jupyter Lab (для работы с `discover.ipynb`):
+
+```bash
+uv run jupyter lab
+```
+
+Все команды Python в проекте выполняйте через `uv run <команда>`, чтобы они использовали нужное окружение.
