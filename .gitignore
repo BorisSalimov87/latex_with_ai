@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+article/article.aux
+article/article.bbl
+article/article.blg
+article/article.fdb_latexmk
+article/article.fls
+article/article.out
+article/article.pdf
